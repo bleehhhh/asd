@@ -691,37 +691,25 @@
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places" async defer></script>
     <script>
-      function initializeAutocomplete() {
-        // Target the input element with the ID "Location"
-        const input = document.getElementById("Location");
+       function initializeAutocomplete() {
+            const input = document.getElementById("Location");
+            const autocomplete = new google.maps.places.Autocomplete(input);
+        }
 
-        // Initialize Google Maps Places Autocomplete
-        const autocomplete = new google.maps.places.Autocomplete(input, {
-          types: ["geocode"], // Restrict suggestions to geographical locations
-          componentRestrictions: { country: "us" }, // Restrict to US addresses
-        });
+        function loadGoogleMapsAPI() {
+            const script = document.createElement("script");
+            script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAe8zjxYmCP6-O1EUhFDaS36KkX7jomK50&libraries=places&callback=initializeAutocomplete`;
+            script.async = true;
+            script.defer = true;
+            document.body.appendChild(script);
+        }
 
-        // Event listener for when a place is selected
-        autocomplete.addListener("place_changed", () => {
-          const place = autocomplete.getPlace();
-          if (!place.geometry) {
-            alert(`No details available for the input: '${place.name}'`);
-            return;
-          }
+        window.onload = loadGoogleMapsAPI;
 
-          console.log("Selected place details:", place);
-          // Optional: Populate other fields or process place details as needed
-        });
-      }
-
-      // Initialize the autocomplete when the page loads
-      window.onload = initializeAutocomplete;
+    </script>
+    <script>
 
 
-
-
-    
-  window.onload = initializeAutocomplete;
   function formatPhoneNumber(event) {
       const input = event.target;
       let value = input.value.replace(/\D/g, ""); 
