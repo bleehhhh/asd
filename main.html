@@ -688,26 +688,27 @@
     if (service) {
         document.getElementById('SW').value = service;
     }
-            </script>
-
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDG8lTwaa09O5VKpAFFkgvNP62dRVDWEKw&libraries=places" async defer></script>
-<script>
-  function initializeAutocomplete() {
-    const input = document.getElementById("Location");
-    const autocomplete = new google.maps.places.Autocomplete(input, {
-      types: ["address"], 
-      componentRestrictions: { country: "us" } 
-    });
+  <script>
+    function initializeAutocomplete() {
+      const input = document.getElementById("Location");
+      const autocomplete = new google.maps.places.Autocomplete(input, {
+        types: ["address"], 
+        componentRestrictions: { country: "us" } 
+      });
 
-    autocomplete.addListener("place_changed", () => {
-      const place = autocomplete.getPlace();
-      if (!place.geometry) {
-        console.warn("No details available for input:", place.name);
-        return;
-      }
-      console.log(place); 
-    });
-} 
+      autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace();
+        if (!place.geometry) {
+          console.warn("No details available for input:", place.name);
+          return;
+        }
+        console.log(place); 
+      });
+    }
+
+    
   window.onload = initializeAutocomplete;
   function formatPhoneNumber(event) {
       const input = event.target;
