@@ -689,24 +689,30 @@
         document.getElementById('SW').value = service;
     }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDc_DUpxifNuQ4UymU9D_IrEe9adBeDVMU&libraries=places&callback=initMap" async defer></script>
-  <script>
-    function initializeAutocomplete() {
-      const input = document.getElementById("Location");
-      const autocomplete = new google.maps.places.Autocomplete(input, {
-        types: ["address"], 
-        componentRestrictions: { country: "us" } 
-      });
+<script src="https://maps.googleapis.com/maps/api/js?AIzaSyDG8lTwaa09O5VKpAFFkgvNP62dRVDWEKw&libraries=places&callback=initMap" async defer></script>
+<script>
+  function initializeAutocomplete() {
+    const input = document.getElementById("Location");
+    const autocomplete = new google.maps.places.Autocomplete(input, {
+      types: ["address"],
+      componentRestrictions: { country: "us" } 
+    });
 
-      autocomplete.addListener("place_changed", () => {
-        const place = autocomplete.getPlace();
-        if (!place.geometry) {
-          console.warn("No details available for input:", place.name);
-          return;
-        }
-        console.log(place); 
-      });
-    }
+    autocomplete.addListener("place_changed", () => {
+      const place = autocomplete.getPlace();
+      if (!place.geometry) {
+        console.warn("No details available for input:", place.name);
+        return;
+      }
+      console.log(place); 
+    });
+  }
+
+  window.onload = initializeAutocomplete;
+</script>
+
+
+
 
     
   window.onload = initializeAutocomplete;
